@@ -2,7 +2,7 @@
 	"name": "Gmail message ID finder",
 	"short_name": "Gmail ID finder",
 	"description": "Adds a 'Copy message ID' button to Gmail messages which generates a search term that you can later use to get back to your message.",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"author": "Tim van Dalen <tim@code-orange.nl>",
 	"content_scripts": [{
 		"matches": [
