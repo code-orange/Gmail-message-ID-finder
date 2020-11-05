@@ -12,6 +12,13 @@ const writeClipboard = (str) => {
 InboxSDK.load('1', 'sdk_gmail-id-copy_457e9be754').then(function(sdk){
 	var barMessage;
 
+	// Find the index of the currently logged in user
+	var userNumber = 0;
+	var matches = window.location.pathname.match(/^\/mail\/u\/(\d+)\/.*/);
+	if (matches) {
+		userNumber = matches[1];
+	}
+
 	// Whenever a message is loaded, add a menu button to the More menu
 	sdk.Conversations.registerMessageViewHandler(function(messageView) {
 		messageView.addToolbarButton({
@@ -20,7 +27,7 @@ InboxSDK.load('1', 'sdk_gmail-id-copy_457e9be754').then(function(sdk){
 			onClick: function () {
 				// When it's clicked, send a message to page.js
 				barMessage = sdk.ButterBar.showSaving({text: "Loading...", confirmationText: "Message ID copied to clipboard!"});
-				window.postMessage({type: 'FETCH_ATTACHMENT', id: messageView.getMessageID()}, "*");
+				window.postMessage({type: 'FETCH_ATTACHMENT', id: messageView.getMessageID(), user: userNumber}, "*");
 			},
 			orderHint: 0
 		});

@@ -15,7 +15,7 @@ window.addEventListener("message", function(event) {
 		return;
 	}
 	
-	fetch('https://mail.google.com/mail/u/0/?ui=2&ik=' + GLOBALS[9] + '&view=om&th=' + event.data.id, {credentials: 'include'}).then(function (r) {
+	fetch('https://mail.google.com/mail/u/' + event.data.user + '/?ui=2&ik=' + GLOBALS[9] + '&view=om&th=' + event.data.id, {credentials: 'include'}).then(function (r) {
 		return r.text();
 	}).then(function (r) {
 		var m = regex.exec(r);
